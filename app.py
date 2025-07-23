@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import joblib
 from sklearn.pipeline import Pipeline
+from sklearn.compose import ColumnTransformer
 
 model = joblib.load("model.pkl")
 
