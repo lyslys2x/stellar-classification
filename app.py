@@ -171,7 +171,6 @@ st.markdown("""
 col1, col2 = st.columns([1, 1])
 
 with col1:
-    st.markdown('<div class="panel">', unsafe_allow_html=True)
     st.markdown('<h2 class="panel-title">Enter values for Stellar Classification</h2>', unsafe_allow_html=True)
     
     # Using number inputs to control the range of value the user is entering
@@ -187,11 +186,8 @@ with col1:
     # Predict button
     if st.button("Classify Stellar Object", type="primary"):
         st.session_state.show_prediction = True
-    
-    st.markdown('</div>', unsafe_allow_html=True)
 
 with col2:
-    st.markdown('<div class="panel">', unsafe_allow_html=True)
     st.markdown('<h2 class="panel-title">Predicted Stellar Object</h2>', unsafe_allow_html=True)
     
     # Show prediction if button was clicked
@@ -250,8 +246,6 @@ with col2:
             st.markdown('</div>', unsafe_allow_html=True)
     else:
         st.markdown('<p style="color: white; text-align: center; font-style: italic;">Enter values and click "Classify Stellar Object" to see the prediction</p>', unsafe_allow_html=True)
-    
-    st.markdown('</div>', unsafe_allow_html=True)
         
 
 
