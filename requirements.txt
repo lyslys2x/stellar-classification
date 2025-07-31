@@ -1,8 +1,8 @@
-ipykernel==6.28.0
-joblib==1.2.0
-numpy==1.26.4
-pandas==2.1.4
-scikit-learn==1.2.2
-streamlit==1.30.0
+ipykernel==6.29.5 
+joblib==1.4.2
+numpy==2.0.1
+pandas==2.2.3
+scikit-learn==1.6.1 
+streamlit==1.44.1 
 seaborn==0.13.2
-plotly==5.9.0
+plotly==6.2.0
