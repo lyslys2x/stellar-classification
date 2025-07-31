@@ -18,6 +18,10 @@ from sklearn.preprocessing import LabelEncoder
 import warnings
 warnings.filterwarnings('ignore')
 
+# Fix for NumPy 2.0+ compatibility - add bool8 alias
+if not hasattr(np, 'bool8'):
+    np.bool8 = np.bool_
+
 # Load model
 model = joblib.load("model.pkl")
 
