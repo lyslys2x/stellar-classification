@@ -18,9 +18,6 @@ from sklearn.preprocessing import LabelEncoder
 import warnings
 warnings.filterwarnings('ignore')
 
-# Fix for NumPy 2.0+ compatibility - add bool8 alias
-if not hasattr(np, 'bool8'):
-    np.bool8 = np.bool_
 
 # Load model
 model = joblib.load("model.pkl")
@@ -508,10 +505,8 @@ def load_data():
     df['alpha'] = pd.to_numeric(df['alpha'], errors='coerce')
     df = df.dropna(subset=['alpha'])
     df = df.dropna()
-    
-    # Fix for numpy bool8 deprecation - use explicit boolean conversion
-    mask = (df != -9999.000000).all(axis=1)
-    df = df[mask]
+    # mask = (df != -9999.000000).all(axis=1)
+    # df = df[mask]
     
     return df
 
