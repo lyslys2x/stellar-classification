@@ -504,7 +504,11 @@ def load_data():
     df['alpha'] = pd.to_numeric(df['alpha'], errors='coerce')
     df = df.dropna(subset=['alpha'])
     df = df.dropna()
-    df = df[~(df == -9999.000000).any(axis=1)]
+    
+    # Fix for numpy bool8 deprecation - use explicit boolean conversion
+    mask = (df != -9999.000000).all(axis=1)
+    df = df[mask]
+    
     return df
 
 # Load data
