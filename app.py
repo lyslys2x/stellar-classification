@@ -32,19 +32,16 @@ st.set_page_config(
 # Custom CSS for styling
 st.markdown("""
 <style>
-    /* Global styles */
     * {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     
-    /* Main content spacing */
     .main .block-container {
         padding-top: 140px;
         padding-bottom: 2rem;
         max-width: 1200px;
     }
     
-    /* Sidebar styling */
     .css-1d391kg {
         background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
         border-right: 1px solid rgba(255,255,255,0.1);
@@ -54,7 +51,6 @@ st.markdown("""
         padding: 1rem;
     }
     
-    /* Header styling */
     .header-container {
         background: linear-gradient(90deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
         padding: 0;
@@ -131,35 +127,9 @@ st.markdown("""
         margin-top: 0.25rem;
         font-weight: 500;
     }
+
     
-    /* Responsive design */
-    @media (max-width: 768px) {
-        .navbar {
-            flex-direction: column;
-            gap: 1rem;
-            padding: 1rem;
-        }
-        
-        .navbar-menu {
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .nav-link {
-            padding: 0.5rem 1rem;
-            font-size: 0.8rem;
-        }
-        
-        .header-title {
-            font-size: 1.8rem;
-        }
-        
-        .main .block-container {
-            padding-top: 160px;
-        }
-    }
-    
-    /* Content cards and panels */
+
     .panel {
         background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
         padding: 2rem;
@@ -184,7 +154,7 @@ st.markdown("""
         padding: 1.5rem;
         border-radius: 12px;
         color: white;
-        text-align: center;
+        align-items: center;
         margin: 0.5rem 0;
         box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
         border: 1px solid rgba(255,255,255,0.1);
@@ -197,13 +167,16 @@ st.markdown("""
     
     .prediction-card {
         background: linear-gradient(135deg, #8080ff 0%, #9999ff 100%);
-        padding: 2rem;
         border-radius: 16px;
         color: white;
         text-align: center;
         margin: 1rem 0;
         box-shadow: 0 8px 25px rgba(240, 147, 251, 0.3);
         border: 1px solid rgba(255,255,255,0.1);
+    }
+            
+    .prediction-card h2{
+        margin: 0;
     }
     
     .info-box {
@@ -244,48 +217,134 @@ st.markdown("""
         transform: translateY(-2px);
     }
     
-    /* Form inputs */
     .stTextInput > div > div > input,
     .stNumberInput > div > div > input,
     .stSelectbox > div > div > select {
-        background-color: rgba(255,255,255,0.1) !important;
-        border: 1px solid rgba(255,255,255,0.2) !important;
-        border-radius: 8px !important;
-        padding: 0.75rem !important;
-        color: #ffffff !important;
+        background-color: rgba(255,255,255,0.1) ;
+        border: 1px solid rgba(255,255,255,0.2) ;
+        border-radius: 8px ;
+        padding: 0.75rem ;
+        color: #ffffff ;
         backdrop-filter: blur(10px);
     }
     
     .stTextInput > div > div > input:focus,
     .stNumberInput > div > div > input:focus,
     .stSelectbox > div > div > select:focus {
-        box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.3) !important;
-        border-color: rgba(102, 126, 234, 0.5) !important;
+        box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.3) ;
+        border-color: rgba(102, 126, 234, 0.5) ;
+        outline: none ;
+    }
+    
+    *:focus {
+        outline: none ;
+        box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.3) ;
+    }
+    
+    .stSelectbox > div > div > div:focus,
+    .stSelectbox > div > div > div[data-baseweb="select"]:focus {
+        outline: none ;
+        box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.3) ;
+        border-color: rgba(102, 126, 234, 0.5) ;
+    }
+    
+    .stSelectbox > div > div > div[data-baseweb="select"]:focus-within {
+        outline: none ;
+        box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.3) ;
+        border-color: rgba(102, 126, 234, 0.5) ;
+    }
+    
+    .stButton > button:focus {
+        outline: none ;
+        box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.3) ;
+    }
+
+    .stSlider > div > div > div:focus,
+    .stSlider > div > div > div[data-baseweb="slider"]:focus {
+        outline: none ;
+        box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.3) ;
+    }
+    
+    /* Sidebar specific selectbox overrides */
+    .css-1d391kg .stSelectbox > div > div > div,
+    .css-1d391kg .stSelectbox > div > div > div[data-baseweb="select"],
+    .css-1d391kg .stSelectbox > div > div > div:focus,
+    .css-1d391kg .stSelectbox > div > div > div:focus-within,
+    .css-1d391kg .stSelectbox > div > div > div[data-baseweb="select"]:focus,
+    .css-1d391kg .stSelectbox > div > div > div[data-baseweb="select"]:focus-within {
+        outline: none ;
+        box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.3) ;
+        border-color: rgba(102, 126, 234, 0.5) ;
+    }
+    
+    /* Target the specific selectbox container in sidebar */
+    .css-1d391kg [data-testid="stSelectbox"] > div > div > div,
+    .css-1d391kg [data-testid="stSelectbox"] > div > div > div:focus,
+    .css-1d391kg [data-testid="stSelectbox"] > div > div > div:focus-within {
+        outline: none ;
+        box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.3) ;
+        border-color: rgba(102, 126, 234, 0.5) ;
+    }
+    
+    /* Override any red borders or outlines */
+    .stSelectbox *,
+    .css-1d391kg .stSelectbox * {
+        border-color: rgba(102, 126, 234, 0.5) ;
+        outline-color: rgba(102, 126, 234, 0.3) ;
+    }
+    
+    /* Force remove red colors */
+    .stSelectbox *:focus,
+    .css-1d391kg .stSelectbox *:focus {
+        border-color: rgba(102, 126, 234, 0.5) ;
+        outline-color: rgba(102, 126, 234, 0.3) ;
+        box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.3) ;
+    }
+    
+    /* Remove focus outline from textboxes */
+    .stTextInput > div > div > input:focus,
+    .stNumberInput > div > div > input:focus,
+    .stTextArea > div > div > textarea:focus {
+        outline: none ;
+        box-shadow: none ;
+        border-color: rgba(102, 126, 234, 0.5) ;
+    }
+    
+    /* Remove focus outline from all input elements */
+    input:focus,
+    textarea:focus,
+    select:focus {
+        outline: none ;
+        box-shadow: none ;
+    }
+    
+    /* Override any default browser focus styles */
+    *:focus {
+        outline: none ;
     }
     
     .stTextInput > div > div > input::placeholder,
     .stNumberInput > div > div > input::placeholder {
-        color: rgba(255,255,255,0.6) !important;
+        color: rgba(255,255,255,0.6) ;
     }
     
-    /* Buttons */
     .stButton > button {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-        color: white !important;
-        border: none !important;
-        border-radius: 8px !important;
-        padding: 0.75rem 1.5rem !important;
-        font-weight: 600 !important;
-        transition: all 0.3s ease !important;
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3) !important;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) ;
+        color: white ;
+        border: none ;
+        border-radius: 8px ;
+        padding: 0.75rem 1.5rem ;
+        font-weight: 600 ;
+        transition: all 0.3s ease ;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3) ;
     }
     
     .stButton > button:hover {
-        transform: translateY(-2px) !important;
-        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4) !important;
+        transform: translateY(-2px) ;
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4) ;
     }
     
-    /* Prediction results */
+     Prediction results */
     .prediction-result {
         text-align: center;
         color: white;
@@ -307,69 +366,73 @@ st.markdown("""
         color: rgba(255,255,255,0.9);
     }
 
-    /* Images */
+     Images */
     .stImage img {
-        border-radius: 12px !important;
-        border: 2px solid rgba(255, 255, 255, 0.2) !important;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.3) !important;
-        align-items: center !important;
+        border-radius: 12px ;
+        border: 2px solid rgba(255, 255, 255, 0.2) ;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3) ;
+        align-items: center ;
+        max-height: 420px ;
+        width: auto ;
+        object-fit: cover ;
     }
     
     .stImage {
         border-radius: 12px;
         overflow: hidden;
+        max-height: 420px ;
     }
     
-    /* Headers and text */
+     Headers and text */
     h1, h2, h3 {
-        color: #ffffff !important;
-        font-weight: 600 !important;
-        letter-spacing: 0.5px !important;
+        color: #ffffff ;
+        font-weight: 600 ;
+        letter-spacing: 0.5px ;
     }
     
     h1 {
-        font-size: 2.5rem !important;
-        margin-bottom: 1.5rem !important;
+        font-size: 2.5rem ;
+        margin-bottom: 1.5rem ;
     }
     
     h2 {
-        font-size: 2rem !important;
-        margin-bottom: 1rem !important;
+        font-size: 2rem ;
+        margin-bottom: 1rem ;
     }
     
     h3 {
-        font-size: 1.5rem !important;
-        margin-bottom: 0.75rem !important;
+        font-size: 1.5rem ;
+        margin-bottom: 0.75rem ;
     }
     
     p {
-        color: rgba(255,255,255,0.9) !important;
-        line-height: 1.6 !important;
+        color: rgba(255,255,255,0.9) ;
+        line-height: 1.6 ;
     }
     
-    /* Dataframes */
+     Dataframes */
     .stDataFrame {
-        background: rgba(255,255,255,0.05) !important;
-        border-radius: 8px !important;
-        border: 1px solid rgba(255,255,255,0.1) !important;
+        background: rgba(255,255,255,0.05) ;
+        border-radius: 8px ;
+        border: 1px solid rgba(255,255,255,0.1) ;
     }
     
-    /* Success/Error messages */
+     Success/Error messages */
     .stSuccess {
-        background: rgba(76, 175, 80, 0.1) !important;
-        border: 1px solid rgba(76, 175, 80, 0.3) !important;
-        border-radius: 8px !important;
-        color: #4CAF50 !important;
+        background: rgba(76, 175, 80, 0.1) ;
+        border: 1px solid rgba(76, 175, 80, 0.3) ;
+        border-radius: 8px ;
+        color: #4CAF50 ;
     }
     
     .stError {
-        background: rgba(244, 67, 54, 0.1) !important;
-        border: 1px solid rgba(244, 67, 54, 0.3) !important;
-        border-radius: 8px !important;
-        color: #F44336 !important;
+        background: rgba(244, 67, 54, 0.1) ;
+        border: 1px solid rgba(244, 67, 54, 0.3) ;
+        border-radius: 8px ;
+        color: #F44336 ;
     }
     
-    /* Scrollbar styling */
+     Scrollbar styling */
     ::-webkit-scrollbar {
         width: 8px;
     }
@@ -387,69 +450,69 @@ st.markdown("""
         background: rgba(102, 126, 234, 0.7);
     }
     
-    /* Graph and chart styling */
+     Graph and chart styling */
     .stPlotlyChart {
-        background: rgba(255,255,255,0.05) !important;
-        border-radius: 16px !important;
-        padding: 1rem !important;
-        border: 1px solid rgba(255,255,255,0.1) !important;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.2) !important;
-        backdrop-filter: blur(10px) !important;
-        margin: 1rem 0 !important;
-        overflow: hidden !important;
+        background: rgba(255,255,255,0.05) ;
+        border-radius: 16px ;
+        padding: 1rem ;
+        border: 1px solid rgba(255,255,255,0.1) ;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.2) ;
+        backdrop-filter: blur(10px) ;
+        margin: 1rem 0 ;
+        overflow: hidden ;
     }
     
     .stPlotlyChart > div {
-        border-radius: 12px !important;
-        overflow: hidden !important;
-        width: 100% !important;
-        height: auto !important;
+        border-radius: 12px ;
+        overflow: hidden ;
+        width: 100% ;
+        height: auto ;
     }
     
-    /* Ensure Plotly charts have proper sizing */
+     Ensure Plotly charts have proper sizing */
     .stPlotlyChart .js-plotly-plot {
-        width: 100% !important;
-        height: auto !important;
-        overflow: hidden !important;
+        width: 100% ;
+        height: auto ;
+        overflow: hidden ;
     }
     
     .stPlotlyChart .plotly {
-        width: 100% !important;
-        height: auto !important;
-        overflow: hidden !important;
+        width: 100% ;
+        height: auto ;
+        overflow: hidden ;
     }
     
 
     
     
-    /* Metric containers */
+     Metric containers */
     .stMetric {
-        background: rgba(255,255,255,0.05) !important;
-        border-radius: 12px !important;
-        padding: 1rem !important;
-        border: 1px solid rgba(255,255,255,0.1) !important;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important;
-        backdrop-filter: blur(10px) !important;
-        margin: 0.5rem 0 !important;
+        background: rgba(255,255,255,0.05) ;
+        border-radius: 12px ;
+        padding: 1rem ;
+        border: 1px solid rgba(255,255,255,0.1) ;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2) ;
+        backdrop-filter: blur(10px) ;
+        margin: 0.5rem 0 ;
     }
     
-    /* All plot containers */
+     All plot containers */
     [data-testid="stPlotlyChart"],
     [data-testid="stDataFrame"],
     [data-testid="stMetric"] {
-        background: rgba(255,255,255,0.05) !important;
-        border-radius: 16px !important;
-        padding: 1rem !important;
-        border: 1px solid rgba(255,255,255,0.1) !important;
-        box-shadow: 0 8px 32px rgba(0,0,0,0.2) !important;
-        backdrop-filter: blur(10px) !important;
-        margin: 1rem 0 !important;
-        overflow: visible !important;
+        background: rgba(255,255,255,0.05) ;
+        border-radius: 16px ;
+        padding: 1rem ;
+        border: 1px solid rgba(255,255,255,0.1) ;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.2) ;
+        backdrop-filter: blur(10px) ;
+        margin: 1rem 0 ;
+        overflow: visible ;
     }
     
-    /* Chart titles and labels */
+     Chart titles and labels */
     .stPlotlyChart .js-plotly-plot .plotly .main-svg {
-        border-radius: 12px !important;
+        border-radius: 12px ;
     }
 S
     }
@@ -514,36 +577,28 @@ def load_data():
 df = load_data()
 
 # Sidebar navigation
-st.sidebar.title("🚀 Navigation")
+st.sidebar.title("Navigation")
 
 # Initialize selected_page in session state if not exists
 if 'selected_page' not in st.session_state:
-    st.session_state.selected_page = "🏠 Home Dashboard"
+    st.session_state.selected_page = "Home Dashboard"
 
 page = st.sidebar.selectbox(
     "Choose your exploration mode:",
-    ["🏠 Home Dashboard", "🔬 Stellar Classification", "📊 Data Explorer"],
-    index=["🏠 Home Dashboard", "🔬 Stellar Classification", "📊 Data Explorer"].index(st.session_state.selected_page)
+    ["Home Dashboard", "Stellar Classification", "Data Explorer"],
+    index=["Home Dashboard", "Stellar Classification", "Data Explorer"].index(st.session_state.selected_page)
 )
 
 # Update session state when page changes
 if page != st.session_state.selected_page:
     st.session_state.selected_page = page
 
-
-
-# Initialize session state for games and classification history
-if 'quiz_score' not in st.session_state:
-    st.session_state.quiz_score = 0
-if 'total_questions' not in st.session_state:
-    st.session_state.total_questions = 0
-if 'quiz_history' not in st.session_state:
-    st.session_state.quiz_history = []
+#Initializting Classification History
 if 'classification_history' not in st.session_state:
     st.session_state.classification_history = []
 
-if page == "🏠 Home Dashboard":
-    st.header("🌌 Welcome to IdentiStar!")
+if page == "Home Dashboard":
+    st.header("Welcome to IdentiStar!")
     
     # Key metrics
     col1, col2, col3, col4 = st.columns(4)
@@ -581,24 +636,24 @@ if page == "🏠 Home Dashboard":
         """, unsafe_allow_html=True)
     
     # Quick start section
-    st.subheader("🚀 Quick Start")
+    st.subheader("Quick Start")
     
     col1, = st.columns(1)
     
     with col1:
         st.markdown("""
         <div class="info-box">
-            <h4>🔬 Try Stellar Classification</h4>
+            <h4>Try Stellar Classification</h4>
             <p>Input stellar object properties and get instant classifications with confidence scores.</p>
         </div>
         """, unsafe_allow_html=True)
         
-        if st.button("🔬 Start Classification", type="primary"):
-            st.session_state.selected_page = "🔬 Stellar Classification"
+        if st.button("Start Classification", type="primary"):
+            st.session_state.selected_page = "Stellar Classification"
             st.rerun()
     
     # Interactive 3D scatter plot
-    st.subheader("🌌 Interactive 3D Stellar Map")
+    st.subheader("Interactive 3D Stellar Map")
     
     # Feature selection for 3D plot
     col1, col2, col3 = st.columns(3)
@@ -636,7 +691,7 @@ if page == "🏠 Home Dashboard":
     st.plotly_chart(fig_3d, use_container_width=True)
     
     # Recent activity
-    st.subheader("📈 Recent Activity")
+    st.subheader("Recent Activity")
     
     col1, col2 = st.columns(2)
     
@@ -663,7 +718,7 @@ if page == "🏠 Home Dashboard":
     
     # Recent classification history (if any)
     if st.session_state.classification_history:
-        st.subheader("📚 Your Recent Classifications")
+        st.subheader("Your Recent Classifications")
         
         # Show last 3 classifications
         recent_classifications = st.session_state.classification_history[-3:]
@@ -679,14 +734,14 @@ if page == "🏠 Home Dashboard":
                 </div>
                 """, unsafe_allow_html=True)
 
-elif page == "🔬 Stellar Classification":
-    st.header("🔬 Live Stellar Classification")
+elif page == "Stellar Classification":
+    st.header("Live Stellar Classification")
     
     # Interactive input section
     st.markdown("""
     <div class="info-box">
-        <h4>💡 How it works:</h4>
-        <p>Enter the observed values for a stellar object and watch our AI classify it in real-time!</p>
+        <h4>How it works:</h4>
+        <p>Enter the observed values for a stellar object and watch our AI classify it in real-time! Please enter values according to the format and units of the Sloan Digital Sky Survey (SDSS) data.</p>
     </div>
     """, unsafe_allow_html=True)
     
@@ -696,14 +751,14 @@ elif page == "🔬 Stellar Classification":
         st.markdown('<h2 class="panel-title">Enter values for Stellar Classification</h2>', unsafe_allow_html=True)
         
         # Using number inputs to control the range of value the user is entering
-        alpha_selected = st.number_input("Enter Alpha", min_value=0.0, max_value=360.0, step=0.01)
-        delta_selected = st.number_input("Enter Delta", min_value=-90.0, max_value=90.0, step=0.01)
-        red_shift_selected = st.number_input("Enter Red Shift", min_value=0.0, max_value=8.0, step=0.01)
-        UV_filter_selected = st.number_input("Enter UV Filter", min_value=15.0, max_value=30.0, step=0.01)
-        green_filter_selected = st.number_input("Enter Green Filter", min_value=14.0, max_value=30.0, step=0.01)
-        red_filter_selected = st.number_input("Enter Red Filter", min_value=13.0, max_value=30.0, step=0.01)
-        ir_filter_selected = st.number_input("Enter Infrared Filter", min_value=12.0, max_value=30.0, step=0.01)
-        near_ir_filter_selected = st.number_input("Enter Near Infrared Filter", min_value=12.5, max_value=30.0, step=0.01)
+        alpha_selected = st.number_input("Enter Alpha (Right Ascension Angle)", min_value=0.0, max_value=360.0, step=0.01)
+        delta_selected = st.number_input("Enter Delta (Declination Angle)", min_value=-20.0, max_value=300.00, step=0.01)
+        red_shift_selected = st.number_input("Enter Red Shift (Wavelength Emitted)", min_value=-0.0000001, max_value=7.0000000, step=-0.0000001)
+        UV_filter_selected = st.number_input("Enter UV Filter (In the Photometric System)", min_value=15.0, max_value=30.0, step=0.01)
+        green_filter_selected = st.number_input("Enter Green Filter (In the Photometric System)", min_value=14.0, max_value=30.0, step=0.01)
+        red_filter_selected = st.number_input("Enter Red Filter (In the Photometric System)", min_value=13.0, max_value=30.0, step=0.01)
+        ir_filter_selected = st.number_input("Enter Infrared Filter (In the Photometric System)", min_value=12.0, max_value=30.0, step=0.01)
+        near_ir_filter_selected = st.number_input("Enter Near Infrared Filter (In the Photometric System)", min_value=12.5, max_value=30.0, step=0.01)
         
         # Predict button
         if st.button("Classify Stellar Object", type="primary"):
@@ -797,31 +852,31 @@ elif page == "🔬 Stellar Classification":
     
     # Classification History Section
     if st.session_state.classification_history:
-        st.subheader("📚 Classification History")
+        st.subheader("Classification History")
         
         # History controls
         col1, col2 = st.columns([4, 1])
         with col1:
             st.markdown("""
             <div class="info-box">
-                <h4>📊 Your Classification Journey</h4>
+                <h4>Your Classification Journey</h4>
                 <p>Review your past classifications and track your exploration of stellar objects.</p>
             </div>
             """, unsafe_allow_html=True)
         
         with col2:
             st.markdown("<br>", unsafe_allow_html=True)  # Add some spacing
-            if st.button("🗑️ Clear History", type="secondary"):
+            if st.button("Clear History", type="secondary"):
                 st.session_state.classification_history = []
                 st.rerun()
         
         # Display history in reverse chronological order
         for i, entry in enumerate(reversed(st.session_state.classification_history[-10:])):  # Show last 10 entries
-            with st.expander(f"🔍 {entry['prediction']} - {entry['timestamp']} (Confidence: {entry['confidence']:.1f}%)"):
+            with st.expander(f"{entry['prediction']} - {entry['timestamp']} (Confidence: {entry['confidence']:.1f}%)"):
                 col1, col2 = st.columns(2)
                 
                 with col1:
-                    st.markdown("**📊 Input Parameters:**")
+                    st.markdown("**Input Parameters:**")
                     input_data = entry['input_data']
                     st.markdown(f"""
                     - **Alpha:** {input_data['alpha']:.2f}°
@@ -835,7 +890,7 @@ elif page == "🔬 Stellar Classification":
                     """)
                 
                 with col2:
-                    st.markdown("**🎯 Classification Result:**")
+                    st.markdown("**Classification Result:**")
                     st.markdown(f"""
                     - **Predicted Class:** {entry['prediction']}
                     - **Confidence:** {entry['confidence']:.1f}%
@@ -855,7 +910,7 @@ elif page == "🔬 Stellar Classification":
         
         # History statistics
         if len(st.session_state.classification_history) > 1:
-            st.subheader("📈 Classification Statistics")
+            st.subheader("Classification Statistics")
             
             # Calculate statistics
             predictions = [entry['prediction'] for entry in st.session_state.classification_history]
@@ -891,11 +946,11 @@ elif page == "🔬 Stellar Classification":
             st.plotly_chart(fig_history, use_container_width=True)
     
 
-elif page == "📊 Data Explorer":
-    st.header("📊 Interactive Data Explorer")
+elif page == "Data Explorer":
+    st.header("Interactive Data Explorer")
     
     # Data overview
-    st.subheader("📈 Dataset Overview")
+    st.subheader("Dataset Overview")
     
     col1, col2 = st.columns(2)
     
@@ -923,7 +978,7 @@ elif page == "📊 Data Explorer":
         st.plotly_chart(fig_heatmap, use_container_width=True)
     
     # Interactive feature analysis
-    st.subheader("🔍 Feature Analysis")
+    st.subheader("Feature Analysis")
     
     feature = st.selectbox("Select feature to analyze:", 
                           ['red_shift', 'UV_filter', 'green_filter', 'red_filter', 'IR_filter', 'near_IR_filter'])
@@ -952,116 +1007,9 @@ elif page == "📊 Data Explorer":
         st.plotly_chart(fig_box, use_container_width=True)
     
     # Statistical summary
-    st.subheader("📊 Statistical Summary")
+    st.subheader("Statistical Summary")
     st.dataframe(df.groupby('class')[feature].describe())
 
-
-elif page == "🌌 Cosmic Stories":
-    st.header("🌌 Cosmic Stories & Educational Content")
-    
-    st.markdown("""
-    <div class="info-box">
-        <h4>🌟 Welcome to the Cosmic Classroom!</h4>
-        <p>Learn about the fascinating objects in our universe and how we classify them.</p>
-    </div>
-    """, unsafe_allow_html=True)
-    
-    # Educational content
-    st.subheader("📚 What are these objects?")
-    
-    object_type = st.selectbox("Choose an object type to learn about:", 
-                              ["Stars", "Galaxies", "Quasars"])
-    
-    if object_type == "Stars":
-        st.markdown("""
-        ### ⭐ Stars
-        **What they are:** Massive balls of plasma held together by gravity, primarily composed of hydrogen and helium.
-        
-        **Key characteristics:**
-        - Emit light through nuclear fusion in their cores
-        - Have varying sizes, temperatures, and colors
-        - Most stars in our galaxy are red dwarfs
-        - Our Sun is a yellow dwarf star
-        
-        **In our dataset:** Stars typically have low redshift values and specific magnitude patterns across different filters.
-        """)
-        
-        # Show star examples
-        star_examples = df[df['class'] == 'STAR'].sample(3)
-        st.subheader("🌟 Example Stars from Our Dataset")
-        st.dataframe(star_examples[['red_shift', 'UV_filter', 'green_filter', 'red_filter']])
-    
-    elif object_type == "Galaxies":
-        st.markdown("""
-        ### 🌌 Galaxies
-        **What they are:** Vast collections of stars, gas, dust, and dark matter bound together by gravity.
-        
-        **Key characteristics:**
-        - Contain billions to trillions of stars
-        - Come in various shapes (spiral, elliptical, irregular)
-        - Our Milky Way is a spiral galaxy
-        - Most distant objects visible to telescopes
-        
-        **In our dataset:** Galaxies show a wide range of redshift values and have distinct spectral energy distributions.
-        """)
-        
-        # Show galaxy examples
-        galaxy_examples = df[df['class'] == 'GALAXY'].sample(3)
-        st.subheader("🌌 Example Galaxies from Our Dataset")
-        st.dataframe(galaxy_examples[['red_shift', 'UV_filter', 'green_filter', 'red_filter']])
-    
-    elif object_type == "Quasars":
-        st.markdown("""
-        ### ⚡ Quasars (QSOs)
-        **What they are:** Extremely bright active galactic nuclei powered by supermassive black holes.
-        
-        **Key characteristics:**
-        - Among the most luminous objects in the universe
-        - Powered by accretion disks around supermassive black holes
-        - Often found at very high redshifts (very distant)
-        - Emit across the entire electromagnetic spectrum
-        
-        **In our dataset:** Quasars typically have high redshift values and very bright magnitudes in UV filters.
-        """)
-        
-        # Show quasar examples
-        quasar_examples = df[df['class'] == 'QSO'].sample(3)
-        st.subheader("⚡ Example Quasars from Our Dataset")
-        st.dataframe(quasar_examples[['red_shift', 'UV_filter', 'green_filter', 'red_filter']])
-    
-    # Interactive redshift explanation
-    st.subheader("🔴 Understanding Redshift")
-    
-    redshift_value = st.slider("Adjust redshift value:", 0.0, 5.0, 1.0)
-    
-    # Calculate distance and age (simplified)
-    distance_approx = redshift_value * 3.26  # billion light years (simplified)
-    age_approx = redshift_value * 2.5  # billion years ago (simplified)
-    
-    st.markdown(f"""
-    **Redshift {redshift_value:.2f} means:**
-    - **Distance:** Approximately {distance_approx:.1f} billion light years away
-    - **Age:** Light left the object about {age_approx:.1f} billion years ago
-    - **Universe was:** About {13.8 - age_approx:.1f} billion years old when light was emitted
-    
-    *Note: These are simplified calculations for educational purposes.*
-    """)
-    
-    # Show objects at this redshift
-    nearby_objects = df[
-        (df['red_shift'] >= redshift_value - 0.1) & 
-        (df['red_shift'] <= redshift_value + 0.1)
-    ]
-    
-    if not nearby_objects.empty:
-        st.subheader(f"🔍 Objects at Similar Redshift ({redshift_value:.2f} ± 0.1)")
-        redshift_dist = nearby_objects['class'].value_counts()
-        fig_redshift_dist = px.pie(
-            values=redshift_dist.values,
-            names=redshift_dist.index,
-            title=f"Object Types at Redshift ~{redshift_value:.2f}"
-        )
-        st.plotly_chart(fig_redshift_dist, use_container_width=True)
 
 # Footer
 st.markdown("""
